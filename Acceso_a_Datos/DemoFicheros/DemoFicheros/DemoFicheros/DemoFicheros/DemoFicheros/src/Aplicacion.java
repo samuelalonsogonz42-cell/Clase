@@ -1,11 +1,23 @@
+import com.dam.demofile.controlador.Controlador;
+import com.dam.demofile.modelo.Modelo;
+import com.dam.demofile.vista.Vista;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.io.FileReader;
 
 public class Aplicacion{
-     public static File carpeta= new File("./documentos");
-     public static void main(String[] args){
+    public static void main(String [] args){
+        Modelo modelo= new Modelo();
+        Vista vista = new Vista();
+        Controlador controlador= new Controlador(modelo,vista);
+        vista.menu();
+    }
+     //public static File carpeta= new File("./documentos");
+     /*public static void main(String[] args){
+         carpeta.mkdir();
         System.out.println(carpeta.getAbsolutePath());
         System.out.println(Arrays.toString(carpeta.listFiles()));
         menu();
@@ -23,42 +35,10 @@ public class Aplicacion{
         opciones();
     }
 
-    public static void opciones(){
-         int option;
-         while(true){
-             option=pedirOpcion("Introduce la opción:");
-             switch (option) {
-                 case 0:
-                     leerArchivo(carpeta);
-                 case 1:
-                     crearCarpeta(carpeta);
-                     break;
-                 case 2:
-                     crearFichero(carpeta);
-                     break;
-                 case 3:
-                     listarContenido(carpeta);
-                     break;
-                 case 4:
-                     renombrarFichero(carpeta);
-                     break;
-                 case 5:
-                     eliminarFichero(carpeta);
-                     break;
-                 case 6:
-                     System.out.println("Saliendo...");
-                     System.exit(0);
-             }
-             menu();
-         }
-    }
-    public static int pedirOpcion(String entrada){
-         System.out.println(entrada);
-         Scanner input= new Scanner(System.in);
-         return input.nextInt();
-    }
 
-    public static void crearCarpeta(File carpeta){
+
+
+    public static void crearCarpeta(){
         File directorio= new File(carpeta,nombreFichero());
         if(directorio.mkdir()){
             System.out.println("El directorio ha sido creado con éxito");
@@ -68,7 +48,7 @@ public class Aplicacion{
         }
     }
 
-    public static void crearFichero(File carpeta){
+    public static void crearFichero(){
 
         File ficheroVacio = new File(carpeta , nombreFichero());
         try {
@@ -83,7 +63,7 @@ public class Aplicacion{
         }
     }
 
-    public static void listarContenido(File carpeta){
+    public static void listarContenido(){
 
         File[] elementos= carpeta.listFiles();
         if (elementos != null) {
@@ -102,8 +82,8 @@ public class Aplicacion{
         }
     }
 
-    public static void renombrarFichero(File carpeta){
-         listarContenido(carpeta);
+    public static void renombrarFichero(){
+         listarContenido();
          File[] elementos= carpeta.listFiles();
          System.out.println("Qué fichero quieres renombrar?");
         Scanner input = new Scanner(System.in);
@@ -120,14 +100,14 @@ public class Aplicacion{
                  }
                  else {
                      System.out.println("El elemento no existe, introduce otro nombre");
-                     renombrarFichero(carpeta);
+                     renombrarFichero();
                  }
              }
          }
     }
 
-    public static void eliminarFichero(File carpeta){
-        listarContenido(carpeta);
+    public static void eliminarFichero(){
+        listarContenido();
         File[] elementos= carpeta.listFiles();
         System.out.println("Qué fichero quieres eliminar?");
         Scanner input = new Scanner(System.in);
@@ -141,13 +121,13 @@ public class Aplicacion{
                 }
                 else {
                     System.out.println("El elemento no existe, introduce otro nombre");
-                    eliminarFichero(carpeta);
+                    eliminarFichero();
                 }
             }
         }
     }
 
-    public static void leerArchivo(File carpeta){
+    public static void leerArchivo(){
 
     }
     public static String nombreFichero() {
@@ -155,4 +135,6 @@ public class Aplicacion{
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
+
+      */
 }
